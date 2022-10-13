@@ -26,6 +26,9 @@
   "name": "nextdr",
   "version": "1.0.0",
   "description": "a dr appointment web app",
+  "engines": {
+    "node": "16.15.x"
+  },
   "main": "server.js",
   "author": "Awais Zahid",
   "license": "ISC"
