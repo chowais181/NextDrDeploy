@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../features/user/userActions";
 import { useEffect, Fragment } from "react";
@@ -109,6 +109,12 @@ const Login = () => {
                         Login
                       </button>
                     </div>
+                    <br />
+                    <div className="auth">
+                      Don't have an account?{" "}
+                      <Link to="/register"> Sign up</Link>
+                    </div>
+                    <br />
                   </Form>
                 </div>
               </div>

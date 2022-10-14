@@ -250,7 +250,7 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
   fs.unlink(
     "./backend/public/images/" + avatar.substring(avatar.lastIndexOf("/") + 1),
     function (err) {
-      if (err) return console.log(err);
+      if (err) return console.log(err); 
       console.log("Profile Image deleted successfully");
     }
   );

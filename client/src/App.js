@@ -2,7 +2,7 @@ import "./assets/App.css";
 import ScrollToTop from "react-scroll-to-top";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 //--------------------pages-------------------
 import PageNotFound from "./Pages/PageNotFound";
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Navbar />
         <Toaster position="bottom-center" reverseOrder={false} />
         <ScrollToTop smooth />
@@ -218,9 +218,8 @@ function App() {
           <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
-
 export default App;

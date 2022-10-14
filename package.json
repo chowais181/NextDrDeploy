@@ -2,6 +2,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "concurrently": "^7.4.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -19,15 +20,19 @@
     "validator": "^13.7.0"
   },
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
+    "client": "npm start --prefix client",
+    "server": "nodemon backend/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix client && npm run build --prefix client"
   },
   "name": "nextdr",
   "version": "1.0.0",
   "description": "a dr appointment web app",
   "engines": {
-    "node": "16.15.x"
+    "node": "16.15.x",
+    "npm": "8.11.0"
   },
   "main": "server.js",
   "author": "Awais Zahid",

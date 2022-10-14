@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { userLogout } from "../../features/user/userActions";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Icon } from "@iconify/react";
@@ -78,7 +78,7 @@ const adminMenu = [
   },
 ];
 
-// const role = user?.isAdmin ? "Admin" : user?.isDoctor ? "Doctor" : "User";
+
 
 function NavMenu() {
   const location = useLocation();
@@ -121,90 +121,97 @@ function NavMenu() {
             src={process.env.PUBLIC_URL + "/logo.png"}
           />
         </Link>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px", fontSize: "20px", marginLeft: "10%" }}
-            navbarScroll
-          >
-            {menuToBeRendered.map((item, index) => {
-              const isActive = pathname === item.path;
 
-              return (
-                <div key={index}>
-                  <Nav.Link
-                    as={Link}
-                    to={item.path}
-                    className={isActive ? "Active" : undefined}
-                  >
-                    {item.name}
-                  </Nav.Link>
-                </div>
-              );
-            })}
+        {userInfo ? (
+          <Fragment>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{
+                  maxHeight: "100px",
+                  fontSize: "20px",
+                  marginLeft: "10%",
+                }}
+                navbarScroll
+              >
+                {menuToBeRendered.map((item, index) => {
+                  const isActive = pathname === item.path;
 
-            {/* --------------------------for user ------------------ */}
-            {userInfo && userInfo?.role !== "admin" && !myProfile ? (
-              <>
-                <NavDropdown
-                  id="navbarScrollingDropdown"
-                  className={profileUserDropdown.map((item) => {
-                    return item.path === pathname ? "Active" : undefined;
-                  })}
-                  title="Apply Doctor"
-                >
-                  {profileUserDropdown.map((item) => {
-                    const isActive = pathname === item.path;
-                    return (
-                      <div key={item.name + "3asfd2"}>
-                        <NavDropdown.Item
-                          as={Link}
-                          to={item.path}
-                          className={isActive ? "Active" : undefined}
-                        >
-                          {item.name}
-                        </NavDropdown.Item>
-                      </div>
-                    );
-                  })}
-                </NavDropdown>
-              </>
-            ) : null}
+                  return (
+                    <div key={index}>
+                      <Nav.Link
+                        as={Link}
+                        to={item.path}
+                        className={isActive ? "Active" : undefined}
+                      >
+                        {item.name}
+                      </Nav.Link>
+                    </div>
+                  );
+                })}
 
-            {/* ------------------------for doctor------------------ */}
-            {(userInfo && userInfo.role === "doctor") || myProfile ? (
-              <>
-                <NavDropdown
-                  id="navbarScrollingDropdown"
-                  className={profileDoctorDropdown.map((item) => {
-                    return item.path === pathname ? "Active" : undefined;
-                  })}
-                  title="My Profile"
-                >
-                  {profileDoctorDropdown.map((item) => {
-                    const isActive = pathname === item.path;
-                    return (
-                      <div key={item.name + "3asfd2"}>
-                        <NavDropdown.Item
-                          as={Link}
-                          to={item.path}
-                          className={isActive ? "Active" : undefined}
-                        >
-                          {item.name}
-                        </NavDropdown.Item>
-                      </div>
-                    );
-                  })}
-                </NavDropdown>
-              </>
-            ) : null}
-          </Nav>
-          {userInfo ? (
-            <>
-              {/* user icon */}
-              <Nav className="NavIcon">
-                {/* <Badge count={1} color="white">
+                {/* --------------------------for user ------------------ */}
+                {userInfo && userInfo?.role !== "admin" && !myProfile ? (
+                  <>
+                    <NavDropdown
+                      id="navbarScrollingDropdown"
+                      className={profileUserDropdown.map((item) => {
+                        return item.path === pathname ? "Active" : undefined;
+                      })}
+                      title="Apply Doctor"
+                    >
+                      {profileUserDropdown.map((item) => {
+                        const isActive = pathname === item.path;
+                        return (
+                          <div key={item.name + "3asfd2"}>
+                            <NavDropdown.Item
+                              as={Link}
+                              to={item.path}
+                              className={isActive ? "Active" : undefined}
+                            >
+                              {item.name}
+                            </NavDropdown.Item>
+                          </div>
+                        );
+                      })}
+                    </NavDropdown>
+                  </>
+                ) : null}
+
+                {/* ------------------------for doctor------------------ */}
+                {(userInfo && userInfo.role === "doctor") || myProfile ? (
+                  <>
+                    <NavDropdown
+                      id="navbarScrollingDropdown"
+                      className={profileDoctorDropdown.map((item) => {
+                        return item.path === pathname ? "Active" : undefined;
+                      })}
+                      title="My Profile"
+                    >
+                      {profileDoctorDropdown.map((item) => {
+                        const isActive = pathname === item.path;
+                        return (
+                          <div key={item.name + "3asfd2"}>
+                            <NavDropdown.Item
+                              as={Link}
+                              to={item.path}
+                              className={isActive ? "Active" : undefined}
+                            >
+                              {item.name}
+                            </NavDropdown.Item>
+                          </div>
+                        );
+                      })}
+                    </NavDropdown>
+                  </>
+                ) : null}
+              </Nav>
+              {userInfo ? (
+                <>
+                  {/* user icon */}
+                  <Nav className="NavIcon">
+                    {/* <Badge count={1} color="white">
                   <Icon
                     icon="clarity:notification-line"
                     color="white"
@@ -215,49 +222,49 @@ function NavMenu() {
                     onClick={() => navigate("/")}
                   />
                 </Badge> */}
-                <NavDropdown
-                  title={
-                    <Icon
-                      icon="bxs:user-circle"
-                      color="white"
-                      width="30"
-                      height="30"
-                      hFlip={true}
-                    />
-                  }
-                  id="collasible-nav-dropdown"
-                >
-                  <div className="profile-popover">
-                    <strong style={{ textTransform: "capitalize" }}>
-                      {userInfo?.role}
-                    </strong>
-                    <br />
-                    <h6 style={{ textTransform: "capitalize" }}>
-                      {" "}
-                      {userInfo?.name}
-                    </h6>
-                  </div>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/myinfo">
-                    My Info
-                  </NavDropdown.Item>
+                    <NavDropdown
+                      title={
+                        <Icon
+                          icon="bxs:user-circle"
+                          color="white"
+                          width="30"
+                          height="30"
+                          hFlip={true}
+                        />
+                      }
+                      id="collasible-nav-dropdown"
+                    >
+                      <div className="profile-popover">
+                        <strong style={{ textTransform: "capitalize" }}>
+                          {userInfo?.role}
+                        </strong>
+                        <br />
+                        <h6 style={{ textTransform: "capitalize" }}>
+                          {" "}
+                          {userInfo?.name}
+                        </h6>
+                      </div>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item as={Link} to="/myinfo">
+                        My Info
+                      </NavDropdown.Item>
 
-                  <NavDropdown.Divider />
+                      <NavDropdown.Divider />
 
-                  <Button
-                    variant="dark"
-                    style={{ marginLeft: "5%" }}
-                    onClick={() => logoutUser()}
-                  >
-                    Logout
-                  </Button>
-                  {/* </NavDropdown.Item> */}
-                </NavDropdown>
-              </Nav>
-            </>
-          ) : (
-            <>
-              {/* user icon */}
+                      <Button
+                        variant="dark"
+                        style={{ marginLeft: "5%" }}
+                        onClick={() => logoutUser()}
+                      >
+                        Logout
+                      </Button>
+                      {/* </NavDropdown.Item> */}
+                    </NavDropdown>
+                  </Nav>
+                </>
+              ) : (
+                <>
+                  {/* user icon
               <Nav className="NavIcon">
                 <NavDropdown
                   title={
@@ -278,10 +285,14 @@ function NavMenu() {
                     <i className="fas fa-users"> Register</i>
                   </NavDropdown.Item>
                 </NavDropdown>
-              </Nav>
-            </>
-          )}
-        </Navbar.Collapse>
+              </Nav> */}
+                </>
+              )}
+            </Navbar.Collapse>
+          </Fragment>
+        ) : (
+          <></>
+        )}
       </Container>
     </Navbar>
   );

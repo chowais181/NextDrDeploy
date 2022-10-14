@@ -75,7 +75,6 @@ const MyInfo = () => {
                       </h1>
                     </div>
 
-                    {/* <div className="top-img"> */}
                     <img
                       className="round-img-myInfo"
                       src={userInfo?.avatar}

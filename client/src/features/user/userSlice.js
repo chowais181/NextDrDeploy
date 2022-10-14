@@ -99,18 +99,18 @@ const userSlice = createSlice({
     },
     [updateUser.rejected]: (state, { payload }) => {
       state.loading = false;
-      // toast.error(payload);
+      state.error = payload;
     },
 
     // get user details
     [getUserDetails.pending]: (state) => {
       state.loading = true;
-      state.isUpdated=false;
+      state.isUpdated = false;
     },
     [getUserDetails.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.userInfo = payload.user;
-      state.isUpdated=false;
+      state.isUpdated = false;
     },
     [getUserDetails.rejected]: (state, { payload }) => {
       state.loading = false;

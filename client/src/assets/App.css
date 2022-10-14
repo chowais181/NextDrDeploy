@@ -249,8 +249,8 @@ h5 {
 .round-img {
   background-color: white;
   object-fit: contain;
-  width: 170px;
-  height: 170px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
 }
 
@@ -758,10 +758,10 @@ h5 {
   flex-wrap: wrap;
   margin: 0.2rem 0;
 }
-.appointment-img {
+/* .appointment-img {
   width: 5rem;
   margin-right: 1rem;
-}
+} */
 .appointment-doctor p {
   align-self: center;
   font-weight: 500;

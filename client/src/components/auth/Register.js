@@ -5,7 +5,7 @@ import Alert from "@mui/material/Alert";
 //-------------------
 import toast from "react-hot-toast";
 import React, { Fragment, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../../features/user/userActions";
 //------------------
@@ -233,6 +233,11 @@ const Register = () => {
                           Sign Up
                         </button>
                       </div>
+                      <br />
+                      <div className="auth">
+                        Already have an account? <Link to="/login"> Login</Link>
+                      </div>
+                      <br />
                     </Form>
                   </div>
                 </div>
